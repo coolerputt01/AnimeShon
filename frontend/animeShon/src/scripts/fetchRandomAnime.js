@@ -1,16 +1,16 @@
-const apiUrl = 'https://09cef626e0bc8ba9c57b1838c10af55f.serveo.net/random';
+const apiUrl = 'https://f3a26cabd6ec52dd7e20f26a12020a39.serveo.net/random-anime';
 
-var randomAnime = [];
+var randomAnime;
 
 async function fetchRandomAnime(){
   try {
      const response = await fetch(apiUrl);
      const data = await response.json();
      randomAnime = data;
-     console.log(randomAnime);
+     prompt(randomAnime);
   }catch(error){
     console.error(error);
   }
 }
 
-// fetchRandomAnime();
+export {randomAnime, fetchRandomAnime}

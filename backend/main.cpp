@@ -15,6 +15,9 @@ const string animeSearchAPIurl = "https://api.jikan.moe/v4/anime?q=";
 const string animeSearchPagePaginationAPIurl = "&page=";
 const string animeSearchLimitPaginationAPIurl = "&limit=10";
 std::string response;
+std::string corsHeaders = "Access-Control-Allow-Origin: *\r\n"
+"Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+"Access-Control-Allow-Headers: Content-Type\r\n";
 
 size_t chunkDataAssignment(void* contents, size_t byte, size_t numElem,std::string* output){
   size_t totalBytes = byte * numElem;
@@ -41,7 +44,7 @@ void fetchAnimeData(string apiUrl){
     if(res != CURLE_OK){
       cerr<<"Failed to form a valid resquest on curl: '"<<curl_easy_strerror(res)<<"'\n";
     }else {
-      response = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n" + response;
+      response = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"+ corsHeaders+ "\r\n" + response;
     }
     curl_easy_cleanup(curl);
   }else {
