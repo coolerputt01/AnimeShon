@@ -1,0 +1,54 @@
+.random-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.3em;
+}
+.pills {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 2em;
+}
+.genre {
+  font-size: 0.7em;
+  padding: 0.5em;
+  background-color: #FF8225;
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  opacity: 0.9;
+  color: #F8EDED;
+}
+.anime-header {
+  font-size: 1.2em;
+  text-align: center;
+}
+.anime-desc {
+  font-size: 0.7em;
+  margin-top: 2.3em;
+  text-align: center;
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2em;
+  gap: 2em;
+}
+.buttons-container > button {
+  padding: 1em;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  transition: all 0.3s;
+}
+.buttons-container > button:nth-child(2) {
+  background-color: #FF8225;
+  color: #F8EDED;
+}
+.buttons-container > button:hover {
+  scale: 1.1;
+  opacity: 0.89;
+}
