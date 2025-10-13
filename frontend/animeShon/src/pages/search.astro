@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layout/BaseLayout.astro";
+import SearchComponent from "../components/SearchComponent.astro";
+import "../styles/search.css";
+const { searchParams } = new URL(Astro.request.url);
+
+const query = searchParams.get("q") || "";
+console.log(searchParams);
+const page = parseInt(searchParams.get("page") || "1");
+const baseUrl = "https://2da7b613019fec531b7b56ed59b1fa0b.serveo.net/search";
+
+let results = [];
+let totalPages = 1;
+
+if (query !== "__empty__") {
+  try {
+    const response = await fetch(`${baseUrl}?q=${query}&page=${page}`);
+    const data = await response.json();
+    results = data.data || [];
+    totalPages = data.pagination.total || 1;
+  } catch (err) {
+    console.error("Error fetching search data:", err);
+  }
+}
+---
+
+<BaseLayout>
+  <section class="search-section">
+    {query === "__empty__" && (
+      <p class="no-results">Please enter a search term.</p>
+    )}
+
+    {query !== "__empty__" && results.length === 0 && (
+      <p class="no-results">No results found.</p>
+    )}
+
+    {query !== "__empty__" && results.length > 0 && (
+      <Fragment>
+        <div class="results-grid">
+          {results.map((anime) => (
+            <SearchComponent anime={anime} />
+          ))}
+        </div>
+
+        {totalPages > 1 && (
+          <div class="pagination">
+            {page > 1 && (
+              <a href={`/search?q=${query}&page=${page - 1}`} class="page-btn">Previous</a>
+            )}
+            <span class="page-indicator">Page {page} of {totalPages}</span>
+            {page < totalPages && (
+              <a href={`/search?q=${query}&page=${page + 1}`} class="page-btn">Next</a>
+            )}
+          </div>
+        )}
+      </Fragment>
+    )}
+  </section>
+</BaseLayout>

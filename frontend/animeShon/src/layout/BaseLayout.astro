@@ -1,32 +1,72 @@
 ---
-import '../styles/index.css';
+import "../styles/index.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-		<title>AnimeShon</title>
-	</head>
-	<body>
-	  <main>
-	    <header>
-	      <nav>
-	        <div class="title">
-	          <h1 class="nav-header">AnimeShon</h1>
-	        </div>
-	        <div>
-	          <img src="/icons/search.svg"  width="32" height="32"/>
-	        </div>
-	      </nav>
-	    </header>
-	      <div class="blur"></div>
-		    <slot />
-		</main>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>AnimeShon</title>
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <nav>
+          <div class="title">
+            <h1 class="nav-header">AnimeShon</h1>
+          </div>
+
+          <div class="search-bar-container">
+            <input type="text" class="search-bar" placeholder="Search Anime" />
+          </div>
+
+          <div>
+            <img
+              src="/icons/search.svg"
+              width="32"
+              height="32"
+              class="search-icon"
+              alt="Search"
+            />
+          </div>
+        </nav>
+      </header>
+
+      <div class="blur"></div>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <!-- 🔹 Inline logic for toggling search visibility -->
+    <script>
+      const searchIcon = document.querySelector(".search-icon");
+      const navHeader = document.querySelector(".nav-header");
+      const searchBar = document.querySelector(".search-bar");
+
+      if (searchIcon && navHeader && searchBar) {
+        searchIcon.addEventListener("click", () => {
+          navHeader.classList.toggle("hide");
+          searchBar.classList.toggle("show");
+          searchBar.focus();
+        });
+      }
+    </script>
+
+    <!-- 🔹 Debounced search redirect -->
+    <script type="module" src="/scripts/searchAnime.js" is:inline></script>
+    <script type="module" src="/scripts/three.js" defer></script>
+  </body>
 </html>

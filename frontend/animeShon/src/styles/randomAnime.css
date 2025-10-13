@@ -5,6 +5,13 @@
   flex-direction: column;
   padding: 1.3em;
 }
+.text-content {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
 .pills {
   display: flex;
   justify-content: space-around;
@@ -24,11 +31,18 @@
 .anime-header {
   font-size: 1.2em;
   text-align: center;
+  font-weight: bold;
+  background: linear-gradient(to top, #f0f0f0, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.6);
 }
 .anime-desc {
   font-size: 0.7em;
   margin-top: 2.3em;
   text-align: center;
+  color: #F8EDED;
 }
 .buttons-container {
   display: flex;

@@ -1,0 +1,50 @@
+.search-section {
+  padding: 2rem;
+  color: white;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.search-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease;
+}
+
+.search-card:hover {
+  transform: scale(1.03);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.page-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.page-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.page-indicator {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}

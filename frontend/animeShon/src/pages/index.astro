@@ -1,9 +1,22 @@
 ---
-import '../styles/index.css';
-import BaseLayout from '../layout/BaseLayout.astro';
-import RandomAnime from '../components/RandomAnime.astro';
+import "../styles/index.css";
+import BaseLayout from "../layout/BaseLayout.astro";
+import Loader from "../components/Loader.astro";
+import RandomAnime from "../components/RandomAnime.astro";
 ---
 
 <BaseLayout>
-  <RandomAnime></RandomAnime>
+  <!-- Loader initially visible -->
+  <div id="loader">
+    <Loader />
+  </div>
+
+  <!-- Hidden random anime section -->
+  <div id="anime-section" style="display: none;">
+    <RandomAnime />
+  </div>
+
+  <!-- Client scripts -->
+  <script type="module" src="/scripts/fetchRandomAnime.js"></script>
+  <script type="module" src="/scripts/three.js"></script>
 </BaseLayout>
