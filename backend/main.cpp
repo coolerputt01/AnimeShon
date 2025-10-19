@@ -86,20 +86,31 @@ map<string, string> parseQuery(string &requestParamStr){
     }
   }
   return param;
+}vector<string> parseStreamUrl(string &url) {
+    vector<string> parts;
+    string part;
+    stringstream ss(url);
+  
+    while (getline(ss, part, '/')) {
+        if (!part.empty()) {
+            string token;
+            stringstream wordStream(part);
+
+            // Split by space as well
+            while (wordStream >> token) {
+                // Handle "HTTP/1.1" separately
+                if (token.find("HTTP") != string::npos) {
+                    parts.push_back("HTTP");
+                    parts.push_back("1.1");
+                } else {
+                    parts.push_back(token);
+                }
+            }
+        }
+    }
+    return parts;
 }
 
-vector<string> parseStreamUrl(string &url){
-  vector<string> parts;
-  string part;
-  stringstream ss(url);
-  
-  while(getline(ss,part,'/')){
-    if(!part.empty()){
-      parts.push_back(part);
-    }
-  }
-  return parts;
-}
 
 void handleRequest(int &sockets,string apiUrl){
   while(true){

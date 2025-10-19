@@ -1,13 +1,16 @@
 .search-section {
+  height: auto;
   padding: 2rem;
   color: white;
+  
 }
 
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 7vh;
+  margin-bottom: 7vh;
 }
 
 .search-card {

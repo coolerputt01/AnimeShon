@@ -7,7 +7,7 @@ const { searchParams } = new URL(Astro.request.url);
 const query = searchParams.get("q") || "";
 console.log(searchParams);
 const page = parseInt(searchParams.get("page") || "1");
-const baseUrl = "https://2da7b613019fec531b7b56ed59b1fa0b.serveo.net/search";
+const baseUrl = "https://49f72665eb6fb07a870e7e3d82b7c8ea.serveo.net/search";
 
 let results = [];
 let totalPages = 1;

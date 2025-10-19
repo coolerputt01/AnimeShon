@@ -3,7 +3,7 @@
 const searchBar = document.querySelector(".search-bar");
 const searchIcon = document.querySelector(".search-icon");
 // You can change this to your own search endpoint
-const apiUrl = "https://2da7b613019fec531b7b56ed59b1fa0b.serveo.net/search?q=";
+const apiUrl = "https://49f72665eb6fb07a870e7e3d82b7c8ea.serveo.net/search?q=";
 
 // Simple debounce utility
 function debounce(fn, delay = 300) {

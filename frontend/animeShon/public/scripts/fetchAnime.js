@@ -1,10 +1,9 @@
-export let randomAnime = null;
+export let animeData = null;
 
 const baseUrl = "https://49f72665eb6fb07a870e7e3d82b7c8ea.serveo.net";
-const apiUrl = "/random-anime";
+const apiUrl = "/anime/"; // expects an ID like /anime/1
 const streamingUrl = "/streaming";
 
-let animeId = 0;
 let mainStreamingUrl = "";
 
 // DOM elements
@@ -17,26 +16,26 @@ const pills = document.querySelector(".pills");
 
 async function fetchStreamUrl(animeId) {
   try {
-    const streamingEndpoint = `${baseUrl}/${animeId}${streamingUrl}`;
+    const streamingEndpoint = `${baseUrl}${apiUrl}${animeId}${streamingUrl}`;
     const response = await fetch(streamingEndpoint);
     const data = await response.json();
 
-    if (data.length > 0) {
+    if (data?.data?.url) {
       console.log("Streaming data found");
       mainStreamingUrl = data.data.url;
     } else {
       document.querySelector(".stream").style.display = "none";
     }
   } catch (error) {
-    console.error("An error occurred: ", error);
+    console.error("An error occurred while fetching stream URL:", error);
   }
 }
 
-export async function fetchRandomAnime() {
+export async function fetchAnime(animeId) {
   try {
-    const response = await fetch(baseUrl + apiUrl);
+    const response = await fetch(baseUrl + apiUrl + animeId);
     const data = await response.json();
-    randomAnime = data;
+    animeData = data;
 
     const anime = data.data;
     animeTitle.textContent = anime.title;
@@ -50,7 +49,6 @@ export async function fetchRandomAnime() {
       pills.appendChild(genElement);
     });
 
-    animeId = anime.mal_id;
     await fetchStreamUrl(animeId);
 
     // Hide loader and show anime section
